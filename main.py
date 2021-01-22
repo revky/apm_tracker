@@ -40,7 +40,7 @@ class MainGUI:
     def __init__(self):
         self.t = Tracker()
         self.layout = [[sg.Text("0000", key="-OUT-")]]
-        self.window = sg.Window('w', self.layout, keep_on_top=True)
+        self.window = sg.Window('w', self.layout, keep_on_top=True, no_titlebar=True, grab_anywhere=True)
 
     def run_window(self):
         while True:
