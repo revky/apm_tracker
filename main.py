@@ -1,5 +1,5 @@
 # This program track's your APM action per minute and displays all actions
-# divided by last two minutes.
+# divided by last minute.
 
 # Imports
 import win32api
@@ -10,13 +10,14 @@ import PySimpleGUI as sg
 class Tracker:
     def __init__(self):
         self.tracked_keys = [0x01, 0x02, 0x05, 0x09, 0x11,
-                             0x31, 0x32, 0x33, 0x34, 0x35, 0x36,
-                             0x37, 0x51, 0x52, 0x53, 0x50, 0x57, 0x45,
-                             0x70, 0x71, 0x72, 0x73]
+                             0x31, 0x32, 0x33, 0x34, 0x35,
+                             0x36, 0x37, 0x51, 0x52, 0x53,
+                             0x50, 0x57, 0x45, 0x70, 0x71,
+                             0x72, 0x73]
 
         self.multiplier = 0.525
         self.all_the_clicks = [time.time()]
-        self.average_clicks = None
+        self.average_clicks = 0
         self.length_of_time = 60
 
     def click_tracker(self):
