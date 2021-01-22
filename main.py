@@ -14,7 +14,7 @@ class Tracker:
                              0x37, 0x51, 0x52, 0x53, 0x50, 0x57, 0x45,
                              0x70, 0x71, 0x72, 0x73]
 
-        self.multiplier = 0.565
+        self.multiplier = 0.525
         self.all_the_clicks = [time.time()]
         self.average_clicks = None
         self.length_of_time = 60
@@ -47,11 +47,18 @@ class MainGUI:
             event, values = self.window.read(timeout=1)
             if event in (sg.WIN_CLOSED, 'Exit'):
                 break
-            self.window['-OUT-'].update(self.t.click_tracker())
-            self.window.refresh()
-            time.sleep(0.05)
+            self.window['-OUT-'].update(self.t.click_tracker(), text_color=self.set_color())
+            time.sleep(0.06)
 
         self.window.Close()
+
+    def set_color(self):
+        if self.t.click_tracker() < 150:
+            return "#ff231f"
+        elif 100 < self.t.click_tracker() < 250:
+            return "#fff50b"
+        else:
+            return "#00eb25"
 
 
 m = MainGUI()
